@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+{% block content %}
+
+      <section class="page-section cta">
+          <div class="container">
+            <div class="row">
+              <div class="col-xl-9 mx-auto">
+                <div class="cta-inner text-center rounded">
+                  <h2 class="section-heading mb-5">
+                    <span class="section-heading-upper">CATEYE MOVIE</span>
+                    <span class="section-heading-lower">Top 100 Movies</span>
+                  </h2>
+<table id="Table" class="table table-striped" style="width:100%" >
+    <thead>
+      <tr>
+        <th>排名</th>
+        <th>电影名</th>
+        <th>主演</th>
+        <th>上映时间</th>
+        <th>详细页</th>
+      </tr>
+    </thead>
+    <tbody>
+       {% for row in  entries  %}
+          <tr>
+            <td>{{ row["排名"] }}</td>
+            <td>{{ row["电影名"] }}</td>
+            <td>{{ row["主演"] }}</td>
+            <td>{{ row["上映时间"] }}</td>
+            <td>{{ row["详细页"] }}</td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+{% endblock content %}

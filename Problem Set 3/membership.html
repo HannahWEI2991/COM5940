@@ -1,0 +1,59 @@
+{% extends "layout.html" %}
+{% block content %}
+
+      <section class="page-section cta">
+          <div class="container">
+            <div class="row">
+              <div class="col-xl-9 mx-auto">
+                <div class="cta-inner text-center rounded">
+                  <h2 class="section-heading mb-5">
+                    <span class="section-heading-upper">Membership Ranking Chart</span>
+                    <span class="section-heading-lower">Join Us!</span>
+                  </h2>
+                  <table id="table1_2" width="100%" class="table table-striped"></table>
+                  <div id="chart"></div>
+
+<script>
+$(document).ready(function(){
+    var chart_items = [];
+    var i = 0;
+    var chart_data = "https://api.airtable.com/v0/app8RX8cQW7V3h9AM/Level?api_key=keyPGaOFOWVMaoigo&maxRecords=10&view=Grid%20view";
+    var chart_dataSet = [];
+     $.getJSON(chart_data,function(result){
+       $.each(result.records,function(key,value){
+         chart_items = [];
+         chart_items.push(value.fields.Name);
+         chart_items.push(value.fields.Points);
+         chart_dataSet.push(chart_items);
+         console.log(chart_items);
+       });
+         console.log(chart_dataSet);
+         var chart = c3.generate({
+           bindto:"#chart",
+           data:{
+               columns:chart_dataSet,
+               type:"bar",
+           },
+           bar:{
+               title:"Membership Points Chart"
+           },
+           axis:{
+             x:{label:"Member",
+             },
+             y:{
+               label:'# of Points',
+               },
+           },
+         });
+     });
+  });
+
+</script>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+{% endblock content %}
